@@ -97,6 +97,10 @@ Usando este fichero podemos ver toda la información relacionada con nuestra ins
   phpinfo();
 ?>
 ```
+
+[Liga](MyPHP/bostonphp/src/00-phpinfo.php)
+
+
 Recuerda no tener este fichero en producción
 
 ## El Fichero php.ini
