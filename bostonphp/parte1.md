@@ -121,7 +121,7 @@ Recuerda no tener este fichero en producción
  - Usamos ' para no usar variables dentro del echo sino concatenando con el punto (.).
  - No deberíamos usar html dentro del echo, se puede hacer, pero hay mejores maneras.
 
-[Liga](MyPHP/bostonphp/src/01-echo.php)
+[Liga](src/01-echo.php)
 
 ```
 <?php
@@ -135,7 +135,7 @@ echo '<strong>hola mundo</strong>';
  - Deberíamos usar Echo en vez de Echo
  - Print debe usar parentesis al funcionar cómo una función.
 
-[Liga](MyPHP/bostonphp/src/02-print.php)
+[Liga](src/02-print.php)
 
 ```
 <?php
@@ -147,7 +147,7 @@ print ('<strong>hola mundo</strong>');
 
  - Usar comillas simples para el echo, y usar comillas sobles
 
-[Liga](MyPHP/bostonphp/src/03-html.php)
+[Liga](src/03-html.php)
 
 ```
 // Usar comillas simples es más rápido para el intérprete
@@ -159,7 +159,7 @@ echo '<input type="text" name="name">';
  - Ejemplo de meter una variable PHP en HTML.
  - Hacemos todo desde una línea para que sea más limpio el código.
 
-[Liga](MyPHP/bostonphp/src/04-embeb-html.php)
+[Liga](src/04-embeb-html.php)
 
 ```
 <?php
@@ -171,7 +171,7 @@ $text = 'Hola Mundo';
 
 # 05 Comentarios
 
-[Liga](MyPHP/bostonphp/src/05-comentarios.php)
+[Liga](src/05-comentarios.php)
 
 ```
 <?php
@@ -196,7 +196,7 @@ echo $text;
 
  - Ejemplo: No usar un punto y coma
 
-[Liga](MyPHP/bostonphp/src/06-errores.php)
+[Liga](src/06-errores.php)
 
 ```
 <?php
@@ -247,7 +247,7 @@ ini_set('error_reporting', -1);
 
 # 07 Variables
 
-[Liga](MyPHP/bostonphp/src/07-variables.php)
+[Liga](src/07-variables.php)
 
 ```
 <?php
@@ -267,7 +267,7 @@ echo $text;
 
 #08 Concatenación
 
-[Liga](MyPHP/bostonphp/src/08-concatenation.php)
+[Liga](src/08-concatenation.php)
 
 ```
 <?php
@@ -287,7 +287,7 @@ echo "$text, Yo he nacido el $fecha";
 
 #09 if else
 
-[Liga](MyPHP/bostonphp/src/09-ifelse.php)
+[Liga](src/09-ifelse.php)
 
 ```
 <?php
@@ -332,7 +332,7 @@ if ($text=='Algo'){
 
 # 10 if / else if
 
-[Liga](MyPHP/bostonphp/src/10-if-elseif.php)
+[Liga](src/10-if-elseif.php)
 
 ```
 <?php
@@ -363,7 +363,7 @@ if ($number == 11){
 
 # 11 Asignaciones
 
-[Liga](MyPHP/bostonphp/src/11-asignaciones.php)
+[Liga](src/11-asignaciones.php)
 
 ```
 <?php
@@ -413,7 +413,7 @@ echo $num.'<br>';// Imprime 2
 
 # 12 Operadores de comparación
 
-[Liga](MyPHP/bostonphp/src/12-comparacion.php)
+[Liga](src/12-comparacion.php)
 
 ```
 
@@ -452,7 +452,7 @@ if ($num1 > $num2){
 
 #13 Operadores Aritméticos
 
-[Liga](MyPHP/bostonphp/src/13-aritmetica.php)
+[Liga](src/13-aritmetica.php)
 
 ```
 <?php
@@ -503,7 +503,7 @@ echo $sum;// 4
 
 #14 Operadores Lógicos
 
-[Liga](MyPHP/bostonphp/src/14-logicos.php)
+[Liga](src/14-logicos.php)
 
 ```
 
@@ -551,7 +551,7 @@ else {
 
 #15 Igualdades Triples
 
-[Liga](MyPHP/bostonphp/src/15-igualdades-triples.php)
+[Liga](src/15-igualdades-triples.php)
 
 ```
 <?php
@@ -581,7 +581,7 @@ else{
 
 #16 bucle while
 
-[Liga](MyPHP/bostonphp/src/16-loop.php)
+[Liga](src/16-loop.php)
 
 ```
 <?php
@@ -599,7 +599,7 @@ while ($num > 0){
 
 # 17 bucle do while
 
-[Liga](MyPHP/bostonphp/src/17-do-while.php)
+[Liga](src/17-do-while.php)
 
 ```
 <?php
@@ -624,7 +624,7 @@ do{
 
 # 18 bucle for
 
-[Liga](MyPHP/bostonphp/src/18-for.php)
+[Liga](src/18-for.php)
 
 ```
 <?php
@@ -639,7 +639,7 @@ for ($num = 9; $num >= 0; $num--) {
 
 # 19 switch
 
-[Liga](MyPHP/bostonphp/src/19-switch.php)
+[Liga](src/19-switch.php)
 
 ```
 <?php
@@ -694,7 +694,7 @@ switch ($num) {
 
 #20 funciones die y exit (T29)
 
-[Liga](MyPHP/bostonphp/src/20-die-exit.php)
+[Liga](src/20-die-exit.php)
 
 ``` 
 
