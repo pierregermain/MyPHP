@@ -98,7 +98,7 @@ Usando este fichero podemos ver toda la información relacionada con nuestra ins
 ?>
 ```
 
-[Liga](MyPHP/bostonphp/src/00-phpinfo.php)
+[Liga](src/00-phpinfo.php)
 
 
 Recuerda no tener este fichero en producción
