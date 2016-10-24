@@ -17,11 +17,3 @@ echo '<br>';
 echo "<input type=\"text\" name=\"name\">";
 
 ?>
-
-<p>Ejemplo 3: Uso de Variables dentro del html</p>
-
-<?php
-$text = 'Hola Mundo';
-?>
-
-<input type="text" value="<?php echo $text; ?>">
