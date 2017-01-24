@@ -11,11 +11,13 @@ Liga: https://www.youtube.com/playlist?list=PL442FA2C127377F07
 
 ## i) Docker y PHP
 
-Al contrario de lo normal (es instalar LAMP/MAMP/WAMP), voy a seguir este tutorial usando docker.
+Al contrario de lo normal (es instalar LAMP/MAMP/WAMP), voy a seguir este tutorial usando docker. Deberemos tener ya docker instalado (si no es el caso, mira wiki en MyDocker)
+
+Vamos a usar este docker file:
 
 [hub.docker.com/_/php/](https://hub.docker.com/_/php/)
 
-Creamos el siguiente sistema de directorios/ficheros
+Creamos el siguiente sistema de directorios/ficheros (podemos bajarnos todo usando git clone de este proyecto)
 
 ```
 [bostonphp] 
@@ -53,6 +55,10 @@ Ahora que ya esta funcionando podemos usar el siguiente comando *run* para que a
 
 ```
  docker run -it --rm -v ~/webapps/bostonphp/src:/var/www/html/:rw --name bostonphp boston-php-app
+ 
+ ó
+ 
+ docker run -it --rm -v ~/webapps/MyPHP/bostonphp/src:/var/www/html/:rw --name bostonphp boston-php-app
  ```
 
 ## ii) Creando tu primer fichero PHP
@@ -70,6 +76,8 @@ Ahora que ya esta funcionando podemos usar el siguiente comando *run* para que a
 echo " Hola Mundo
 ?>
 ```
+
+[Liga](src/index.php)
 
 ### Sintaxis Creación del primer fichero
 
@@ -191,74 +199,65 @@ ini_set('error_reporting', -1);
 
 # 07 Variables
 
-[Liga](src/07-variables.php)
+[Liga Ejemplo](src/07-variables.php)
 
 
 #08 Concatenación
 
-[Liga](src/08-concatenation.php)
+[Liga Ejemplo](src/08-concatenation.php)
 
 
 #09 if else
 
-[Liga](src/09-ifelse.php)
+[Liga Ejemplo](src/09-ifelse.php)
 
 
 # 10 if / else if
 
-[Liga](src/10-if-elseif.php)
+[Liga Ejemplo](src/10-if-elseif.php)
 
 
 # 11 Asignaciones
 
-[Liga](src/11-asignaciones.php)
+[Liga Ejemplo](src/11-asignaciones.php)
 
 
 # 12 Operadores de comparación
 
-[Liga](src/12-comparacion.php)
+[Liga Ejemplo](src/12-comparacion.php)
+
+# 13 Operadores Aritméticos
+
+[Liga Ejemplo](src/13-aritmetica.php)
+
+# 14 Operadores Lógicos
+
+[Liga Ejemplo](src/14-logicos.php)
+
+# 15 Igualdades Triples
+
+[Liga Ejemplo](src/15-igualdades-triples.php)
+
+# 16 Bucle while
+
+[Liga Ejemplo](src/16-loop.php)
+
+# 17 Bucle do while
+
+[Liga Ejemplo ](src/17-do-while.php)
+
+# 18 Bucle for
+
+[Liga Ejemplo](src/18-for.php)
+
+# 19 Sentencia switch
+
+[Liga Ejemplo](src/19-switch.php)
 
 
-
-#13 Operadores Aritméticos
-
-[Liga](src/13-aritmetica.php)
-
-
-
-#14 Operadores Lógicos
-
-[Liga](src/14-logicos.php)
-
-
-#15 Igualdades Triples
-
-[Liga](src/15-igualdades-triples.php)
-
-
-#16 bucle while
-
-[Liga](src/16-loop.php)
-
-
-# 17 bucle do while
-
-[Liga](src/17-do-while.php)
-
-# 18 bucle for
-
-[Liga](src/18-for.php)
-
-
-# 19 switch
-
-[Liga](src/19-switch.php)
-
-
-#20 funciones die y exit (T29)
+# 20 funciones die y exit (T29)
 
 [Liga](src/20-die-exit.php)
-
 
 ### TODO EJEMPLOS mas realistas
 
