@@ -94,7 +94,7 @@ Posible:
 
 Por defecto Apache carga automáticamente los `index.php`
 
-# 00 Función phpinfo
+## iii) Función phpinfo
 
 Usando este fichero podemos ver toda la información relacionada con nuestra instancia de PHP.
 
@@ -102,14 +102,14 @@ Usando este fichero podemos ver toda la información relacionada con nuestra ins
 
 Recuerda no tener este fichero en producción
 
-## El Fichero php.ini
+## iv) El Fichero php.ini
 
  - Primero hay que saber cómo encontrar dicho fichero. En dicho fichero viene toda la configuración de nuestra instancia de PHP.
     - Desde la terminal y con la función phpinfo().
  - Muchas veces hay errores que se pueden quitar modificando dicho fichero.
  - Hay que reiniciar Apache para que se tomen los nuevos valores introducidos.
 
-## Identación
+## v) Identación
  - En Drupal usamos dos espacios.
  - Configurar bien tu editor para que los haga automáticamente.
 
