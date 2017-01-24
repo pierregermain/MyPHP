@@ -289,12 +289,153 @@ if ($num == 7){
 
 ?>
 ```
+
 ---
-# Parte 2
+Parte 2
 ---
 
-# 21 Funciones die y exit (T29)
+# 21 Funciones
 
-[Liga](src/20-die-exit.php)
+Ejemplo de Hola Mundo usando una función
+
+[Liga](src/21-funciones.php)
+
+# 22 Funciones con Argumentos
+
+[Liga](src/22-funciones-argumentos.php)
+
+# 23 Funciones con retorno
+
+[Liga](src/23-funciones-return.php)
+
+# 24 Variables Globales y Funciones
+
+[Liga](src/24-globales-funciones.php)
+
+# 25 Funciones Strings
+
+## 25-1 Contar Palabras
+
+[Liga](src/25-1-funciones-string.php)
+
+## 25-2 Generador de contraseñas
+
+[Liga](src/25-2-funciones-string.php)
+
+## 25-3 Ver similitud de Strings
+
+[Liga](src/25-3-funciones-string.php)
+
+## 25-4 trim
+
+[Liga](src/25-4-funciones-string.php)
+
+## 25-5 Más Funciones de String
+
+### rtrim y ltrim
+
+Vimos antes que *trim* nos sirve para recortar un string por los lados derechos e izquierdos. Si sólo queremos recortar un string por uno de los lados vamos a usar *rtrim* y *ltrim*
+
+Ejemplo
+
+[Liga](src/25-5-funciones-string.php)
+
+## 25-6 Más Funciones de String
+
+### addslashes y stripslashes
+
+[Liga](src/25-6-funciones-string.php)
+
+--- 
+Parte 3
+----
+
+# 26 Arreglos
+
+En Drupal usamos un montón los arreglos (Arrays) ... más te vale entenderlos bien.
+
+## 26 - 1 Introducción
+
+ - Inicializar
+ - Acceder
+ - Debuggear
+ - Asignar
+ 
+[Liga](src/26-1-arrays.php)
+
+
+## 26 - 2 Arrays Asociativos
+
+En los arrays anteriores vimos que los índices son número naturales del 0 al infinito.
+
+En los arreglos asociativos podemos denominar los índices con la información que nosotros queramos.
+En nuestro ejemplo cada índice va a ser una comida y el contenido será un día de la semana
+
+[Liga](src/26-2-arrays.php)
+
+
+## 26 - 3 Arrays Multidimensionales
+
+Son arrays dentro de arrays. Vamos a seguir con nuestro ejemplo de comidas. Vamos a dividir la comida en saludable e insaludable
+
+[Liga](src/26-3-arrays.php)
+
+
+## 26 - 4 Recorrer un Arreglo con for each
+
+Vamos a ver cómo recorrar nuestro array multidemensional con dos bucles for each.
+
+[Liga](src/26-4-arrays.php)
+
+# 27 Include 
+
+ - Con el include podemos meter en nuestra página otras páginas.
+
+[Liga](src/27-include.php) que usa [Liga](src/27-aux.php)
+
+# 28 Requiere (T42)
+
+ - Sirve para asegurarse de que cierto fichero exista.
+ - Al contrario del include, el requiere se para de ejecutar si no encuentra el fichero.
+
+[Liga](src/28-require.php) que usa [Liga](src/28-aux.php)
+
+
+# 29 Include once (T43)
+
+Por Hacer
+
+
+# 30 Require once
+
+Por Hacer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
