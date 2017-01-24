@@ -1,4 +1,4 @@
-Basado en el curso de (The New Boston PHP Course)[https://www.youtube.com/playlist?list=PL442FA2C127377F07]
+Basado en el curso de [The New Boston PHP Course](https://www.youtube.com/playlist?list=PL442FA2C127377F07)
 
 # Introducción a PHP
 
