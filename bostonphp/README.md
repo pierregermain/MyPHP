@@ -289,6 +289,12 @@ if ($num == 7){
 
 ?>
 ```
+---
+# Parte 2
+---
 
+# 21 Funciones die y exit (T29)
+
+[Liga](src/20-die-exit.php)
 
 
