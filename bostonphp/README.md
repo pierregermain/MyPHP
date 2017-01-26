@@ -43,8 +43,7 @@ docker build -t boston-php-app .
 docker run -it --rm --name bostonphp boston-php-app
 ```
 
- 
- La opción *-it* significa que es interactivo (creo que no hace falta), pero la opción *-rm* significa que al final se va a destruir la instancia  del contenedor, y esa opción si es muy recomendle usarla para que podam os volver a levantar instancias de forma fácil sin destruir la instancia  anterior.
+La opción *-it* significa que es interactivo (creo que no hace falta), pero la opción *-rm* significa que al final se va a destruir la instancia  del contenedor, y esa opción si es muy recomendle usarla para que podam os volver a levantar instancias de forma fácil sin destruir la instancia  anterior.
 
 
 Con nuestro navegador nos vamos a la IP del contenedor, y voila, debe salir el mensaje **Hola Mundo**
@@ -52,11 +51,11 @@ Con nuestro navegador nos vamos a la IP del contenedor, y voila, debe salir el m
 Ahora que ya esta funcionando podemos usar el siguiente comando *run* para que al realizar cambios en nuestro local se vea también en nuestro contenedor
 
 ```
- docker run -it --rm -v ~/webapps/bostonphp/src:/var/www/html/:rw --name bostonphp boston-php-app
- 
+docker run -it --rm -v ~/webapps/bostonphp/src:/var/www/html/:rw --name bostonphp boston-php-app
+
  ó
- 
- docker run -it --rm -v ~/webapps/MyPHP/bostonphp/src:/var/www/html/:rw --name bostonphp boston-php-app
+
+docker run -it --rm -v ~/webapps/MyPHP/bostonphp/src:/var/www/html/:rw --name bostonphp boston-php-app
  ```
 
 ## ii) Creando tu primer fichero PHP
@@ -389,11 +388,11 @@ Vamos a ver cómo recorrar nuestro array multidemensional con dos bucles for eac
 
 [Liga](src/26-4-arrays.php)
 
-# 27 Include 
+# 27 Include
 
  - Con el include podemos meter en nuestra página otras páginas.
 
-[Liga](src/27-include.php) que usa [Liga](src/27-aux.php)
+[Ver este ejemplo](src/27-include.php) que incluye el contenido del [siguiente fichero](src/27-aux.php)
 
 # 28 Requiere (T42)
 
@@ -411,33 +410,3 @@ Por Hacer
 # 30 Require once
 
 Por Hacer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
