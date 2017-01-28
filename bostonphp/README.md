@@ -391,22 +391,42 @@ Vamos a ver cómo recorrar nuestro array multidemensional con dos bucles for eac
 # 27 Include
 
  - Con el include podemos meter en nuestra página otras páginas.
+ - Podemos usar variables desde la otra página en nuestra página.
 
 [Ver este ejemplo](src/27-include.php) que incluye el contenido del [siguiente fichero](src/27-aux.php)
 
-# 28 Requiere (T42)
+# 28 Requiere
 
  - Sirve para asegurarse de que cierto fichero exista.
- - Al contrario del include, el requiere se para de ejecutar si no encuentra el fichero.
+ - También es capaz de acceder a variables del fichero externo.
+ - Al contrario del include, el requiere obliga a que el fichero exista.
+ - En caso de no existir se para la ejecución de nuestro programa.
 
 [Liga](src/28-require.php) que usa [Liga](src/28-aux.php)
 
 
 # 29 Include once (T43)
 
-Por Hacer
+ - Funciona igual que el include
+ - Comprueba si se ha ejecutado anteriormente el include. En caso afirmativo no se vuelve a ejecutar
 
+[Liga](src/29-include-once.php) que usa [Liga](src/27-aux.php)
 
 # 30 Require once
 
-Por Hacer
+ - Tiene las mismas funcionalidad que el require.
+ - Comprueba si se ha ejecutado anteriormente el requiere. En caso afirmativo no se vuelve a ejecutar
+ - Alternativamente podríamos usar la sentencia:
+
+```
+if (!defined('nombre-fichero')) {
+  require 'nombre-fichero';
+}
+
+```
+
+[Liga](src/30-require-once.php) que usa [Liga](src/28-aux.php)
+
+# 31 Expression Matching
+
+https://www.youtube.com/watch?v=bvGMVmJ0mAk&index=30&list=PL442FA2C127377F07
