@@ -427,6 +427,21 @@ if (!defined('nombre-fichero')) {
 
 [Liga](src/30-require-once.php) que usa [Liga](src/28-aux.php)
 
-# 31 Expression Matching
+# 31 Expresiones Regulares
 
-https://www.youtube.com/watch?v=bvGMVmJ0mAk&index=30&list=PL442FA2C127377F07
+[Liga](src/31-preg.php)
+
+# 32 Funciones de String
+
+https://www.youtube.com/watch?v=xR9LddrVDmY&list=PL442FA2C127377F07&index=46
+
+[Liga](src/31-string-length)
+
+
+
+
+
+
+
+
+
