@@ -444,7 +444,7 @@ if (!defined('nombre-fichero')) {
 ### Uso de Formulario
 
 
-[Liga](src/32-2-strlen.php)
+[Liga](src/32-2-upper-lower)
 
 ## 32-3 Posición de strings
 
