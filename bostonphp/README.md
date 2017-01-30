@@ -433,14 +433,22 @@ if (!defined('nombre-fichero')) {
 
 # 32 Funciones de String
 
-https://www.youtube.com/watch?v=xR9LddrVDmY&list=PL442FA2C127377F07&index=46
+## 32-1 Longitud de string con strlen
 
-[Liga](src/31-string-length)
+ - strlen devuelve la longitud del string
+
+[Liga](src/32-1-strlen.php)
 
 
+## 32-2 Conversión a minúsculas y mayúsculas
+### Uso de Formulario
 
 
+[Liga](src/32-2-strlen.php)
 
+## 32-3 Posición de strings
+
+https://www.youtube.com/watch?v=3yZq2Epb3FI&list=PL442FA2C127377F07&index=46#t=13.304475
 
 
 
