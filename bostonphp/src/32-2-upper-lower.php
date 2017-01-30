@@ -10,8 +10,10 @@ echo $string_upper.'<br><br>';
 
 ?>
 
+<?php
 // Ejemplo de uso de formulario para encontrar nombres
 // sin destinguir minúsculas y mayúsculas
+?>
 
 <form action="32-2-upper-lower.php" method="GET">
   user name: <input type="text" name="user_name"><br><br>
@@ -19,8 +21,6 @@ echo $string_upper.'<br><br>';
 </form>
 
 <?php
-
-
 if (isset($_GET['user_name']) && !empty($_GET['user_name'])){
   echo $user_name = $_GET['user_name'];
 
