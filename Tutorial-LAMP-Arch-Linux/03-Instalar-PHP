@@ -1,0 +1,57 @@
+Pierre Germain
+
+\@p13germain
+
+Instalar PHP en Arch Linux
+
+www.wiki.archlinux.org
+
+#PHP 7
+sudo pacman -S php
+
+/etc/php/php.ini
+
+date.timezone
+
+MariaDB
+extension=pdo_mysql.so
+extension=mysqli.so
+
+open_basedir
+
+sudo systemctl restart httpd.service
+
+<?php
+phpinfo();
+?>
+
+Apache
+
+sudo pacman -S php-apache
+
+/etc/httpd/conf/httpd.conf
+Descomentar
+LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
+
+Comentar
+\#LoadModule mpm_event_module modules/mod_mpm_event.so
+
+Añadir
+LoadModule php7_module modules/libphp7.so
+AddHandler php7-script php
+
+Añadir en los includes
+Include conf/extra/php7_module.conf
+
+sudo systemctl restart httpd.service
+
+<?php
+phpinfo();
+?>
+
+Graci😽s! 
+
+#😀😁😃😄😅😆😇😈😉😊😋😌😍😎😏
+#😐😑😒😓😔😕😖😗😘😙😚😛😜😝😞😟
+#😠😡😢😣😥😦😧😨😩😪😫😭😮😯😰😱
+#😲😳😵😴😶😷😹😸😺😻😼😾😽😿🙀☠

@@ -1,0 +1,29 @@
+Pierre Germain
+
+Apache en Arch Linux
+
+www.archlinux.org
+www.wiki.archlinux.org
+
+sudo pacman -S apache
+
+localhost 
+
+sudo systemctl status httpd
+sudo systemctl start httpd
+
+localhost
+
+/srv/http
+
+localhost
+
+/etc/httpd/conf/
+/var/log/httpd/
+
+Graci😂s! 
+
+#😀😁😃😄😅😆😇😈😉😊😋😌😍😎😏
+#😐😑😒😓😔😕😖😗😘😙😚😛😜😝😞😟
+#😠😡😢😣😥😦😧😨😩😪😫😭😮😯😰😱
+#😲😳😵😴😶😷😸😹😺😻😼😽😾😿🙀☠

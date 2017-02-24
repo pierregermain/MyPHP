@@ -1,0 +1,28 @@
+Pierre Germain
+
+\@p13germain
+
+Instalar Mysql en Arch Linux
+
+www.wiki.archlinux.org
+
+MariaDB vs MySQL
+
+sudo pacman -S mariadb
+
+Inicializar MySQL
+
+mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+
+mysqld == mariadb
+sudo systemctl status mysqld
+sudo systemctl start mysqld
+
+mysql -u root -p
+
+Graci😸s! 
+
+#😀😁😃😄😅😆😇😈😉😊😋😌😍😎😏
+#😐😑😒😓😔😕😖😗😘😙😚😛😜😝😞😟
+#😠😡😢😣😥😦😧😨😩😪😫😭😮😯😰😱
+#😲😳😵😴😶😷😹😸😺😻😼😽😾😿🙀☠
