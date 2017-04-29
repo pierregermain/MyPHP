@@ -16,7 +16,7 @@ $my_array2 = array(
   ),
   'Pierre' => array(
     'fecha' => 1969,
-    'fav_band' => 'Saint Germain',
+    'banda' => 'Saint Germain',
   ),
 );
 
