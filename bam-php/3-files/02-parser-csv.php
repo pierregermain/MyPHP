@@ -2,7 +2,7 @@
 
 // Outputbuffer (ob)
 ob_start();
-include('06-data.txt');
+include('data.txt');
 // Get content of the ob
 $data = ob_get_contents();
 // Close de ob
