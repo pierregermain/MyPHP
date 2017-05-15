@@ -1,5 +1,7 @@
 <?php
 
+// Función parser que obtiene el fichero y un array de labels más el separador de línea y registros
+
 function parse_data($data_file, $array_labels, $record_divider = "\n", $data_divider = ",") {
   
   ob_start();

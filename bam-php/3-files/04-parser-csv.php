@@ -1,5 +1,7 @@
 <?php
 
+// Función parser que todavía tiene mucha lógica personalizada
+
 function parse_data($data_file) {
   // Outputbuffer (ob)
   ob_start();
