@@ -1,5 +1,12 @@
 <?php
 
+//
+// Para correr esto en D7, tareas a hacer
+// 1. Activar PHP filter
+// 2. Pegar el código en Página Básica
+// 3. Cambiar el action="03..." al nombre del nodo
+//
+
 if (isset($_REQUEST['action'])) {
 
   if ($_REQUEST['action'] == 'contactar') {
@@ -29,7 +36,7 @@ if (isset($_REQUEST['action'])) {
     print '<hr>';
     var_dump($body);
 
-    // Mandar Mail
+    // Mandar Mail con PHP
     mail('pierrewb@itesm.com','Petición',$body);
   
   }

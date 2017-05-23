@@ -6,11 +6,13 @@ if(isset($_REQUEST['action'])) {
 
   switch ($_REQUEST['action']) {
 
-    case 'mostrar':
+  case 'mostrar':
+      // Se obtiene con POST
       print '<h3>Mi string es: '. $_POST['my_string'] . '</h3>';
       break;
 
     case 'guardar':
+      // Se obtiene con GET desde el URL
       $my_string = $_GET['mi_rista'];
       print '<h3>Mi string '. $my_string . ' no se borró</h3>';
       break;
