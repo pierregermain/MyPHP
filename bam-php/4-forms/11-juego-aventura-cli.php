@@ -20,7 +20,9 @@ function empezar_sesion_aventura(){
 
 function ejecutar_comando($comando) {
 
-  // EJEMPLO DE GLOBAL
+  // TODO EJEMPLO DE GLOBAL
+  // Declarando estas variables cómo globales dentro de la función hace que vaya a usar el nombre de la variable que se habíá declarado anteriormente fuera de la función.
+  // No es bueno usar este tipo de variables globales
   global $data;
   global $mensajes_array;
   global $texto_estandard;
@@ -40,9 +42,6 @@ function ejecutar_comando($comando) {
       $mensajes_array[] = 'No se a que estás esperando chico!';
       return;
 
-    case 'fumar':
-      //log_standard_text('malo');//TODO
-      return;
     }
   }
 
@@ -55,7 +54,7 @@ function ejecutar_comando($comando) {
   var_dump ($comandos);
 
   if (key_exists($comando, $comandos)) {
-    // EJEMPLO DE EVAL
+    // TODO EJEMPLO DE EVAL
     print( "<p>si existe comando</p>");
     // DEBUG SESSION
     var_dump($_SESSION);
@@ -103,7 +102,7 @@ $data['Casa'] = array(
   'descripción' => 'Estás en la casa. Hay una puerta al Este y una ventana al Sur. Puedes ir al Sur con el comando <em>S</em>. Puedes recoger la caña con <em>recoger caña</em>',
   'comandos' => array(
     's' => 'ir_hacia("Jardín");',
-    'ver' => '$mensajes[] = in_array("Caña", $_SESSION["inventario"]) ? $texto_estandard["nada"] : "Hey, hay una caña de pescar en el suelo!";',
+    'ver' => '$mensajes_array[] = in_array("caña", $_SESSION["inventario"]) ? "No hay nada especial que ver" : "Hey, hay una caña de pescar en el suelo!";',
     'recoger caña' => 'recoger("caña");',
   ),
 );
@@ -112,8 +111,7 @@ $data['Jardín'] = array(
   'descripción' => 'Estás en el Jardín. Puedes ir al Norte con el comando N. También puedes ejecutar el comando "Ver". También puedes usar el comando "usar caña"',
   'comandos' => array(
     'n' => 'ir_hacia("Casa");',
-    'usar caña' => '$mensajes_array[] = "Has usado la caña";',
-    'xusar' => 'if (in_array("caña", $_SESSION["inventario"])) { $mensajes_array[] = "Has usado la caña";} else { $mensajes_array = "No tienes caña de pescar";}',
+    'usar caña' => 'if (in_array("caña", $_SESSION["inventario"])) { $mensajes_array[] = "Has usado la caña";} else { $mensajes_array = "No tienes caña de pescar";}',
   ),
 );
 
