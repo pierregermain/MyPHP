@@ -1,5 +1,6 @@
 <?php
 // Podemos usar comentarios PHP para que no aparezcan en el código fuente HTML
+// @EJEMPLO Form con GET
 ?>
 
 <h1> Ejemplo de Form con GET  </h1>

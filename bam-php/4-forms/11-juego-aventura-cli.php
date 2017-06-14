@@ -20,7 +20,7 @@ function empezar_sesion_aventura(){
 
 function ejecutar_comando($comando) {
 
-  // TODO EJEMPLO DE GLOBAL
+  //@EJEMPLO DE GLOBAL
   // Declarando estas variables cómo globales dentro de la función hace que vaya a usar el nombre de la variable que se habíá declarado anteriormente fuera de la función.
   // No es bueno usar este tipo de variables globales
   global $data;
@@ -54,7 +54,7 @@ function ejecutar_comando($comando) {
   var_dump ($comandos);
 
   if (key_exists($comando, $comandos)) {
-    // TODO EJEMPLO DE EVAL
+    //@EJEMPLO DE EVAL
     print( "<p>si existe comando</p>");
     // DEBUG SESSION
     var_dump($_SESSION);
