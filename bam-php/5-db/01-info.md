@@ -75,17 +75,24 @@ Metemos el u/p de nuestros usuarios.
 		pierre 	  !@#$
 
 
-### SQL INJECTION
+## SQL INJECTION
 
 magic_quotes_gpc = Off
 
 Usar en los parámetros de entrada mysqli_real_escape_string
 mysqli_real_escape_string($mysqli,$_POST['username']).  "' " .
 
-### SEGURIDAD
+## SEGURIDAD
 
 Cuanto mas popular sea tu sitio más seguro debe ser.
 
-### Hacer export desde phpmyadmin
+## Hacer export desde phpmyadmin
 
 La db es pequeña ... okey!
+
+## Delete / Update
+
+No usar los datos en los URL ya que puede dar errores al ir hacia atrás en la historia.
+
+
+
