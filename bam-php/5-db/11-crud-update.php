@@ -38,7 +38,11 @@ function get_notices() {
 
 // Liga Borrar
 function ligaBorrar($user){
-    return '<a href="10-crud-validation.php?action=delete&username='.$user.'"> Borrar</a>';
+    return '<a href="11-crud-update.php?action=delete&username='.$user.'"> Borrar</a>';
+}
+// Liga Actualizar
+function ligaActualizar($user){
+    return '<a href="11-crud-update.php?action=actualizar&username='.$user.'"> Actualizar</a>';
 }
 
 function people_display($mysqli) {
@@ -60,6 +64,7 @@ function people_display($mysqli) {
       <td>'. $row['username'] . '</td>
       <td>'. $row['password'] . '</td>
       <td>'. ligaBorrar($row['username']) . '</td>
+      <td>'. ligaActualizar($row['username']) . '</td>
     </tr>';
   }
 
@@ -81,20 +86,51 @@ function people_display($mysqli) {
   else {
     $output = "<p>No hay datos que mostrar</p>";
   }
-  $output = "<p><a href='10-crud-validation.php?action=add_form'>Añadir persona</a></p>". $output;
+  $output = "<p><a href='11-crud-update.php?action=add_form'>Añadir persona</a></p>". $output;
   return $output;
 }
 
 // Obtenemos los valores introducidos anteriormente
-function add_form() {
+// o los obtenemos de la DB
+function add_form($mysqli, $username = NULL) {
+
+  // Inicializamos $row para poder acceder a ellos sin errores desde nuestro form
+  $row = array('nombre' => '',
+               'anyo'   => '',
+               'banda'   => '',
+               'username'   => '',
+               'password'   => '');
+
+  // Inizializamos nuestro form cómo si fueramos a añadir una persona nueva
+  $action = 'add_person';
+  $username_input = '<p>Username: <input type="text" name="username" value="'.(isset($_POST['username']) ? $_POST['username']: '').'"/></p>';
+  $edit_text = '';
+  $submit_text = "Añadir Persona";
+
+  // Pero si queremos actualizar una persona, cambiamos/inicializamos valores
+  if ($username) {
+    $action = 'edit_person';
+    $submit_text = 'Actualizar Persona';
+    $edit_text = '<p><strong>Estás editando:'.$username.'.</strong></p>';
+    // Este campo esta a hidden cuando editamos un usuario
+    // CUIDADO CON LOS HACKERS !!!
+    $username_input = '<input type="hidden" name="username" value="'.$username.'"/>';
+
+    $result = $mysqli->query("SELECT nombre, anyo, banda, username, password FROM people WHERE username = '".mysql_real_escape_string($username)."'");
+    $row = $result->fetch_assoc();
+
+  }
+
   return '
-    <form action="10-crud-validation.php?action=add_person" method="post">
-      <p> Nombre: <input type="text" name="nombre" value="' . (isset($_POST['nombre']) ? $_POST['nombre']:'').'"/></p>
-      <p> Año: <input type="number" name="anyo" value="' . (isset($_POST['anyo']) ? $_POST['anyo']:'').'"/></p>
-      <p> Banda Favorita: <input type="text" name="banda" value="' . (isset($_POST['banda']) ? $_POST['banda']:'').'"/></p>
-      <p> Usuario: <input type="text" name="username" value="' . (isset($_POST['username']) ? $_POST['username']:'').'"/></p>
-      <p> Contraseña: <input type="text" name="password" value="' . (isset($_POST['password']) ? $_POST['password']:'').'"/></p>
-      <p><input type="submit" value="Añadir"/></p>
+    ' . $edit_text . '
+    <form action="11-crud-update.php method="post">
+      <p> Nombre: <input type="text" name="nombre" value="' . (isset($_POST['nombre']) ? $_POST['nombre']:$row['nombre']).'"/></p>
+      <p> Año: <input type="number" name="anyo" value="' . (isset($_POST['anyo']) ? $_POST['anyo']:$row['anyo']).'"/></p>
+      <p> Banda Favorita: <input type="text" name="banda" value="' . (isset($_POST['banda']) ? $_POST['banda']:$row['banda']).'"/></p>
+      <p> Usuario: <input type="text" name="username" value="' . (isset($_POST['username']) ? $_POST['username']:$row['username']).'"/></p>
+      <p> Contraseña: <input type="text" name="password" value="' . (isset($_POST['password']) ? $_POST['password']:$row['password']).'"/></p>
+      <p><input type="submit" value="'.$submit_text.'"/></p>
+      <input type="hidden" name="action" value="'.$action.'"/>
     </form>';
 }
 
@@ -140,6 +176,7 @@ function validacion_campos($mysqli, $input) {
   } 
   
   // Validación Campo Único
+  // TODO Añadir más validaciones
   $mysqli->real_query("SELECT username FROM personas WHERE username = '"
     . $input['username'] . "'");
   $res = $mysqli->use_result();
@@ -172,6 +209,8 @@ function add_person($mysqli,$output) {
     $output .= add_form($mysqli);
   }
   else{
+    // TODO Ver si es INSERT O UPDATE
+
     // Metemos todos los valores al Insert
     $values = "'" . implode("','", $input) . "'";
     $sql = "INSERT INTO personas (nombre, anyo, banda, username, password) VALUES (" . $values . ")";
@@ -188,9 +227,12 @@ function add_person($mysqli,$output) {
     }
   }
 
+  // TODO Falta un break ???
+
 }
 
 // Procesar el form
+// TODO Cambiar GET por REQUEST
 if (isset($_GET['action'])) {
 
   switch ($_GET['action']) {
@@ -204,7 +246,9 @@ if (isset($_GET['action'])) {
       $mysqli->real_query($query);
       notice('El usuario ' . $_GET['username'] . ' fue borrado');
       break;
-    
+
+   // TODO añadir caso de edit/update 
+
     case 'add_form':
       $output .= add_form();
       break;
@@ -216,7 +260,7 @@ if (isset($_GET['action'])) {
   }
 }
 
-print ('<p><a href="10-crud-validation.php"> Home</a></p>');
+print ('<p><a href="11-crud-update.php"> Home</a></p>');
 
 // Sólo mostramos las personas si no tenemos un form creado
 if ($output == ''){
