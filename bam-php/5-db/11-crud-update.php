@@ -11,12 +11,12 @@ include ('03-aux-conexion-db.php');
 // Mensajes
 // --------
 
-function notice ($text, $action = 'add') {
+function notice ($text, $action = 'add_person') {
   static $notices;
-  if ($action == 'add') {
+  if ($action == 'add_person') {
     $notices[] = $text;
   }
-  elseif ($action == 'get') {
+  elseif ($action == 'get_person') {
     if (count($notices) > 0) {
       $output = '<ul><li>' 
         . implode ('</li><li>', $notices) 
@@ -29,7 +29,7 @@ function notice ($text, $action = 'add') {
 
 
 function get_notices() {
-  return notice('','get');
+  return notice('','get_person');
 }
 
 // ---------------
@@ -42,7 +42,7 @@ function ligaBorrar($user){
 }
 // Liga Actualizar
 function ligaActualizar($user){
-    return '<a href="11-crud-update.php?action=actualizar&username='.$user.'"> Actualizar</a>';
+    return '<a href="11-crud-update.php?action=edit_form&username='.$user.'"> Actualizar</a>';
 }
 
 function people_display($mysqli) {
@@ -103,7 +103,7 @@ function add_form($mysqli, $username = NULL) {
 
   // Inizializamos nuestro form cómo si fueramos a añadir una persona nueva
   $action = 'add_person';
-  $username_input = '<p>Username: <input type="text" name="username" value="'.(isset($_POST['username']) ? $_POST['username']: '').'"/></p>';
+  $username_input = '<p>Usuario: <input type="text" name="username" value="'.(isset($_POST['username']) ? $_POST['username']: '').'"/></p>';
   $edit_text = '';
   $submit_text = "Añadir Persona";
 
@@ -113,21 +113,21 @@ function add_form($mysqli, $username = NULL) {
     $submit_text = 'Actualizar Persona';
     $edit_text = '<p><strong>Estás editando:'.$username.'.</strong></p>';
     // Este campo esta a hidden cuando editamos un usuario
-    // CUIDADO CON LOS HACKERS !!!
+    // TODO: CUIDADO CON LOS HACKERS !!!
     $username_input = '<input type="hidden" name="username" value="'.$username.'"/>';
-
-    $result = $mysqli->query("SELECT nombre, anyo, banda, username, password FROM people WHERE username = '".mysql_real_escape_string($username)."'");
-    $row = $result->fetch_assoc();
-
+    $query = "SELECT nombre, anyo, banda, username, password FROM personas WHERE username = '" . mysqli_real_escape_string($mysqli,$username) . "'";
+    notice($query);
+    $res = $mysqli->query($query);
+    $row = $res->fetch_assoc();
   }
 
   return '
     ' . $edit_text . '
-    <form action="11-crud-update.php method="post">
+    <form action="11-crud-update.php" method="post">
       <p> Nombre: <input type="text" name="nombre" value="' . (isset($_POST['nombre']) ? $_POST['nombre']:$row['nombre']).'"/></p>
       <p> Año: <input type="number" name="anyo" value="' . (isset($_POST['anyo']) ? $_POST['anyo']:$row['anyo']).'"/></p>
       <p> Banda Favorita: <input type="text" name="banda" value="' . (isset($_POST['banda']) ? $_POST['banda']:$row['banda']).'"/></p>
-      <p> Usuario: <input type="text" name="username" value="' . (isset($_POST['username']) ? $_POST['username']:$row['username']).'"/></p>
+      '. $username_input .'
       <p> Contraseña: <input type="text" name="password" value="' . (isset($_POST['password']) ? $_POST['password']:$row['password']).'"/></p>
       <p><input type="submit" value="'.$submit_text.'"/></p>
       <input type="hidden" name="action" value="'.$action.'"/>
@@ -137,7 +137,7 @@ function add_form($mysqli, $username = NULL) {
 // Inicializamos el output para no mostar la lista y el form a la vez
 $output ='';
 
-function validacion_campos($mysqli, $input) {
+function validacion_campos($mysqli, $input, $action) {
 
   // Array que guarda los errores encontrados al validar los campos
   $errors = array();
@@ -176,20 +176,23 @@ function validacion_campos($mysqli, $input) {
   } 
   
   // Validación Campo Único
+  // en el caso de ser una inserción
   // TODO Añadir más validaciones
-  $mysqli->real_query("SELECT username FROM personas WHERE username = '"
-    . $input['username'] . "'");
-  $res = $mysqli->use_result();
-  
-  // Para cada resultado
-  if ($row = $res->fetch_assoc()) {
-    $errors[] = 'Una disculpa, el username ya existe. Porfavor usa otro';
+  if ($action == 'add_person') {
+    $mysqli->real_query("SELECT username FROM personas WHERE username = '"
+      . $input['username'] . "'");
+    $res = $mysqli->use_result();
+
+    // Para cada resultado
+    if ($row = $res->fetch_assoc()) {
+      $errors[] = 'Una disculpa, el username ya existe. Porfavor usa otro';
+    }
   }
   return $errors;
 }
 
-// Add Person
-function add_person($mysqli,$output) {
+// Add/Edit Person
+function add_edit_person($mysqli,$output,$action) {
 
   // Limpieza de valores
   // Metemos los valores en un array llamado $input
@@ -200,7 +203,7 @@ function add_person($mysqli,$output) {
   var_dump($input);
 
   // Validación Campos
-  $errores = validacion_campos($mysqli,$input);
+  $errores = validacion_campos($mysqli,$input,$action);
 
   // Dependiendo de la validación realizada
   if (count($errores) > 0) {
@@ -209,17 +212,27 @@ function add_person($mysqli,$output) {
     $output .= add_form($mysqli);
   }
   else{
-    // TODO Ver si es INSERT O UPDATE
-
-    // Metemos todos los valores al Insert
-    $values = "'" . implode("','", $input) . "'";
-    $sql = "INSERT INTO personas (nombre, anyo, banda, username, password) VALUES (" . $values . ")";
+    // Si estamos ante un INSERT
+    if ($_REQUEST['action'] == 'add_person') {
+      $values = "'" . implode("','", $input) . "'";
+      $sql = "INSERT INTO personas (nombre, anyo, banda, username, password) VALUES (" . $values . ")";
+    }
+    // Si estamos ante un UPDATE
+    else {
+      $sql = "UPDATE personas
+        SET nombre = '" . $input['nombre'] . "',
+          anyo ='" . $input['anyo'] . "',
+          banda ='" . $input['banda'] . "',
+          password ='" . $input['password'] . "'
+        WHERE username ='" . $input['username'] . "'";
+    }
 
     notice($sql);
 
     $result = $mysqli->real_query($sql);
 
     if ($result == TRUE){
+      // TODO: Mejorar mensaje para el update
       notice('Insertado dato desde el formulario');
     }
     else{
@@ -232,10 +245,10 @@ function add_person($mysqli,$output) {
 }
 
 // Procesar el form
-// TODO Cambiar GET por REQUEST
-if (isset($_GET['action'])) {
+// @ REQUEST en vez de GET para poder acceder a $_POST
+if (isset($_REQUEST['action'])) {
 
-  switch ($_GET['action']) {
+  switch ($_REQUEST['action']) {
     
     
     case 'delete':
@@ -247,14 +260,17 @@ if (isset($_GET['action'])) {
       notice('El usuario ' . $_GET['username'] . ' fue borrado');
       break;
 
-   // TODO añadir caso de edit/update 
+   // @ Añadimos caso de edit/update 
 
+    case 'edit_form':
     case 'add_form':
-      $output .= add_form();
+      // Pasamos Usuario en caso de tenerlo
+      $output .= add_form($mysqli,isset($_GET['username']) ? $_GET['username'] : '');
       break;
     
+    case 'edit_person':
     case 'add_person':
-      $output .= add_person($mysqli,$output);
+      $output .= add_edit_person($mysqli,$output,$_REQUEST['action']);
       break;
 
   }
