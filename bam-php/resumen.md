@@ -123,4 +123,32 @@ Al terminar 5-db tareas para mejorar mi capacidad para trabajar con PHP y DB ser
 
 En este tema vamos a hacer nuestro propio CMS. Eso nos va a mostar PORQUE es bueno usar DRUPAL y no tener nuestro propio CMS. Esto nos va a permitir entender mejor DRUPAL
 
+## Site Estático
+
+Empezamos con un site estático:
+`/site`
+
+Con estos ficheros
+
+
+├── about.html
+├── contact.html
+├── images
+│   ├── founder.jpg
+│   ├── logo.png
+│   ├── product-1.jpg
+│   ├── product-2.jpg
+│   ├── product-3.jpg
+│   ├── product-4.jpg
+│   ├── product-5.jpg
+│   ├── product-6.jpg
+│   ├── sticks.jpg
+│   └── use-card.png
+├── index.html
+├── products.html
+└── styles
+    └── style.css
+
+
+
 
