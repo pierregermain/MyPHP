@@ -103,8 +103,24 @@ OSX : FileMerge
 
 
 
+# 5 - DB
+
+## Ejercicios DB
+
+Al terminar 5-db tareas para mejorar mi capacidad para trabajar con PHP y DB serían:
+ - mejorar el juego de aventuras
+   - guardar posición e inventario en la db
+   - conectarse al juego con user/pass
+   - poder buscar otros jugadores por varios campos o todos los campos
+ - mejorar el generador de frases
+   - guardar los tokens
+   - poder guardar tokens por usuario
+   - poder compartir frases generadas con otros usuarios
 
 
 
+# 6 - CMS
+
+En este tema vamos a hacer nuestro propio CMS. Eso nos va a mostar PORQUE es bueno usar DRUPAL y no tener nuestro propio CMS. Esto nos va a permitir entender mejor DRUPAL
 
 
