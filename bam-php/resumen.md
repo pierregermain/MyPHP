@@ -126,11 +126,11 @@ En este tema vamos a hacer nuestro propio CMS. Eso nos va a mostar PORQUE es bue
 ## Site Estático
 
 Empezamos con un site estático:
-`/site`
+`/01-site`
 
 Con estos ficheros
 
-
+```
 ├── about.html
 ├── contact.html
 ├── images
@@ -148,6 +148,20 @@ Con estos ficheros
 ├── products.html
 └── styles
     └── style.css
+    
+```
+    
+## Site Estático con Includes 
+
+Ver `02-site-header-footer`
+
+Ahora nuestros *.html los cambiamos a *.php para que inluyan los ficheros `footer.php` 
+y `header.php`
+
+
+
+
+
 
 
 
