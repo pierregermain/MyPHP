@@ -2,7 +2,9 @@
 $title = 'World Class Throwing Sticks - Product Page';
 include('includes/header.php');
 
+// renders all products
 $product_output = render_products();
+
 ?>
 
 <h1><?php print $title; ?></h1>

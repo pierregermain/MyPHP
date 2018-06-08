@@ -101,8 +101,6 @@ Wrong parameter count.
 
 OSX : FileMerge
 
-
-
 # 5 - DB
 
 ## Ejercicios DB
@@ -116,8 +114,6 @@ Al terminar 5-db tareas para mejorar mi capacidad para trabajar con PHP y DB ser
    - guardar los tokens
    - poder guardar tokens por usuario
    - poder compartir frases generadas con otros usuarios
-
-
 
 # 6 - CMS
 
@@ -151,17 +147,45 @@ Con estos ficheros
     
 ```
     
-## Site Estático con Includes 
+#### Site Estático con Includes 
 
 Ver `02-site-header-footer`
 
 Ahora nuestros *.html los cambiamos a *.php para que inluyan los ficheros `footer.php` 
 y `header.php`
 
+#### Site Estático con Funciones para imprimir productos
 
+Ver `03-site-products-function`
 
+Agregamos la función
 
+```
+foreach ($products as $product) {
+    $product_output .= render_product($product);
+}
+```
 
+#### Site Estático con Data File
+
+Ver `04-products-data-file`
+
+Antes de empezar a guardar los datos en DB, vamos a guardarlo por ahora en un fichero php.
+Vamos a usar **Unique Identifier** para cada producto (también podríamos usar UUID's)
+
+Agregamos el fichero `data/product-data.php` y lo usamos desde `header.php`. 
+Ahora la función de renderizado toma los Id's de los productos.
+También lo usamos desde `products.php` sin pasarle ningún argumento.
+
+## Site con htaccess
+
+Ver `01-site-with-htaccess`
+
+Nuestras páginas aún tienen mucho contenido repetido. Para mejorarlo podemos hacer lo siguiente:
+ - activar el `modrewrite` de php.
+ - usar una página (tipo template) para todas las páginas.
+
+Ya sólo tenemos un fichero index.php en el /site y en el .htaccess configuramos cómo comunicarnos con el apache.
 
 
 

@@ -35,6 +35,7 @@
   );
     
   // Render featured products.
+  // function is in the Header
   $product_output = '';
   foreach ($products as $product) {
     $product_output .= render_product($product);

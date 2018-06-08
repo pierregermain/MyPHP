@@ -41,8 +41,8 @@
   }
   
   // Render featured products.
-  $featured_product_ids = array(1, 2);
-  $featured_product_output = render_products($featured_product_ids)
+  $featured_product_ids = array(1, 2); // Products with ID = 1 and ID = 2
+  $featured_product_output = render_products($featured_product_ids) // We pass the ID's in stead of the data
 
 ?>
 
