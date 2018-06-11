@@ -182,11 +182,15 @@ También lo usamos desde `products.php` sin pasarle ningún argumento.
 Ver `01-site-with-htaccess`
 
 Nuestras páginas aún tienen mucho contenido repetido. Para mejorarlo podemos hacer lo siguiente:
- - activar el `modrewrite` de php.
+ - activar el `mod_rewrite` de apache (ejecutar `a2enmod rewrite`)
  - usar una página (tipo template) para todas las páginas.
 
 Ya sólo tenemos un fichero index.php en el /site y en el .htaccess configuramos cómo comunicarnos con el apache.
 
+Consideraciones:
+ - Ahora el php tag no se cierra en el home
+ - Uso de <<<EOD: Para no tener que usar comillas para definir una variable que tiene comillas
+ - Uso de template
 
 
 
