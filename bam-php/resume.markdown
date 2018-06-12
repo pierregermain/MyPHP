@@ -197,6 +197,32 @@ Nuestras páginas aún tienen mucho contenido repetido. Para mejorarlo podemos h
   </Directory>
 
 ```
+- Agregar `.htaccess`
+
+```
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?path=$1 [L,QSA]
+```
+
+Explicación del .htaccess:
+
+ - Todo lo que está en un .htaccess se aplica recursivamente a la carpeta actual y las subcarpetas
+ - *RewriteEngine on* para reescribir URL's desde apache
+ - *RewriteCond* son especie de IF's. 
+    En este caso para ver si no existe ni fichero ni directorio de la petición. 
+    Esto lo hacemos así para que por ejemplo podamos acceder a imágenes con la URL completa.
+ - `%{REQUEST_FILENAME}` es la variable de petición. En .htaccess las variables empiezan por `%`
+ - *RewriteRule* se ejecuta si se cumplen los *RewriteCond* previos.
+ - `(.*)` es todo lo que hay a partir del slash del dominio. Por ejemplo para `localhost.com/site/` sería `site`
+ - `$` representa el fin de la URL
+ - `index.php` representa el Rewrite: Toda URL que cumpla los RewriteCond van a redireccionarse al index.php
+ - `?path=` es la variable que le vamos a pasar al index.php
+ - `$1` representa el primer match de `(.*)` y va ser el valor que tome la variable `path`
+ - `L` es una bandera para decir que es el último (Last) RewriteRule
+ - `QSA` es para mezclar Queries de la URL con la definida en el .htaccess
+
 
 - Reiniciar: `sudo service apache2 restart`
 
@@ -206,12 +232,16 @@ Más Info en: https://www.digitalocean.com/community/tutorials/how-to-set-up-mod
 
 - usa una página (tipo template) para todas las páginas.
 
-- Ya sólo tenemos un fichero index.php en el `/site` y en el `.htaccess` configuramos cómo comunicarnos con el apache.
+- Ya sólo tenemos un fichero index.php en nuestro `/site` y en el `.htaccess` configuramos cómo comunicarnos con el apache.
 
 Consideraciones:
  - Ahora el php tag no se cierra en el home
  - Uso de <<<EOD: Para no tener que usar comillas para definir una variable que tiene comillas
- - Uso de template
+ - Uso de template que toma las variables de contenido obtenidas desde el index
 
+
+## Site con Settings
+
+Ver `02-site-with-settings`
 
 
