@@ -182,10 +182,31 @@ También lo usamos desde `products.php` sin pasarle ningún argumento.
 Ver `01-site-with-htaccess`
 
 Nuestras páginas aún tienen mucho contenido repetido. Para mejorarlo podemos hacer lo siguiente:
- - activar el `mod_rewrite` de apache (ejecutar `a2enmod rewrite`)
- - usar una página (tipo template) para todas las páginas.
+ 
+#### Activar el `mod_rewrite` de apache:
 
-Ya sólo tenemos un fichero index.php en el /site y en el .htaccess configuramos cómo comunicarnos con el apache.
+- Ejecutar `a2enmod rewrite`
+- Modificar `/etc/apache2/sites-available/default` agregando dentro de `<Virtualhost>`
+
+```
+  <Directory /var/www/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
+
+```
+
+- Reiniciar: `sudo service apache2 restart`
+
+Más Info en: https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite
+
+#### Caractéristicas de esta página:
+
+- usa una página (tipo template) para todas las páginas.
+
+- Ya sólo tenemos un fichero index.php en el `/site` y en el `.htaccess` configuramos cómo comunicarnos con el apache.
 
 Consideraciones:
  - Ahora el php tag no se cierra en el home
