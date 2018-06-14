@@ -1,5 +1,13 @@
 # Resumen/Notas PHP
 
+## Hack para ver Errores
+
+```php
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
+```
+
 ## Variables
 $var = 'string';
 $var = array ('uno','dos');
@@ -243,5 +251,55 @@ Consideraciones:
 ## Site con Settings
 
 Ver `02-site-with-settings`
+
+Vamos a agregar Settings para poder cambiar el título del página
+
+La novedad es que en el `index.php` al renderizar productos le pasamos los ID's de los productos favoritos.
+```
+render_products(get_setting('featured_product_ids'));
+```
+
+En el `settings.php` usamos `static $settings;` para sólo cargar una vez las configuraciones.
+Es bueno meter todas nuestras variables globales en el settings.php para que no otras personas
+usen el mismo nombre que nuestra variable.
+Para asegurarnos que usamos la variable correcta usamos el *get_settings* function. Dicha función
+sólo lee las configuraciones del settings.php
+
+Ahora para imprimir el título de la página en el template usamos `<?php print $company_name; ?>`
+
+## Site con Base de Datos
+
+#### Preparación
+
+Nuestros datos siguen estando en array tipo php y eso no es bueno para el mantenimiento de nuestra web.
+Estaría bien tener un sistema CRUD (Create, Review, Update, Delete) para nuestros Datos.
+
+Vamos a crear una nueva DB con varias tablas:
+
+```mysql
+create database amazing_inc;
+
+CREATE TABLE `amazing_inc`.`users` 
+( `uid` INT NOT NULL AUTO_INCREMENT , 
+`username` VARCHAR(100) NOT NULL , 
+`password` VARCHAR(32) NOT NULL , 
+PRIMARY KEY (`uid`)) 
+ENGINE = InnoDB;
+
+COMMIT;
+```
+
+Insertamos un Usuario de prueba
+
+```mysql
+INSERT INTO `users` (`uid`, `username`, `password`) VALUES (NULL, 'chris', 'test')
+```
+
+#### Estructura del Sitio
+
+Ver `03-site-with-db-and-login`
+
+La configuración a la DB está en el settings.php
+
 
 

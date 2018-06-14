@@ -10,7 +10,7 @@
     <div class="body">
       <div class="header">
         <div class="logo"><img src="images/logo.png" alt="Logo" /></div>
-        <div class="site-title">AmaZING! Inc: Throwing Sticks Done Right</div>
+        <div class="site-title"><?php print $company_name; ?> Throwing Sticks Done Right</div>
         <div class="header-menu">
           <ul>
             <li><a href="index.php">Home</a></li>
