@@ -5,10 +5,13 @@ $title = 'Administer users';
 
 // Display people in the database as a table with a delete link.
 function admin_users_list() {
-  
   $output = '';
-  $result = mysql_query("SELECT * FROM users ORDER BY username ASC");
-  while ($row = mysql_fetch_array($result)) {
+
+  $mysqli = db_connect();
+  $query = "SELECT * FROM users ORDER BY username ASC";
+  $mysqli->real_query($query);
+  $result = $mysqli->use_result();
+  while ($row = $result->fetch_assoc()) {
     $output .= '
       <tr>
         <td>' . $row['uid'] . '</td>
