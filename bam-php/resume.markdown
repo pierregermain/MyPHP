@@ -16,6 +16,18 @@ display_errors = On
 error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
 ```
 
+## Mysqli Snippet
+
+```
+$mysqli = db_connect();
+$query = "";
+$mysqli->real_query($query);
+$result = $mysqli->use_result();
+while ($row = $result->fetch_assoc()) {
+  $row;
+}
+```
+
 ## Variables
 $var = 'string';
 $var = array ('uno','dos');

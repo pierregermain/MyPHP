@@ -46,11 +46,19 @@ function admin_users_add_edit_form($uid = '') {
     $values = $_POST;
   // If the edit form is being loaded for the first time.
   } elseif ($uid != '') {
-    $result = mysql_query("SELECT * FROM users WHERE uid = '" . mysql_real_escape_string($uid) . "'");
-    $values = mysql_fetch_array($result);
+
+
+    $mysqli = db_connect();
+    $query = "SELECT * FROM users WHERE uid = '" . mysqli_real_escape_string($mysqli,$uid) . "'";
+    $mysqli->real_query($query);
+    $result = $mysqli->use_result();
+    while ($row = $result->fetch_assoc()) {
+      $values = $row;
+    }
   // If this is an add form, set the values to empty.
   } else {
     // Populate $row so we can reference it in the form without error.
+    var_dump('else');
     $values = array('uid' => '', 'username' => '', 'password' => '');
   }
   
@@ -103,8 +111,14 @@ function admin_users_add_edit_form_validate($values) {
   // Check uniqueness of username.
   if ($values['uid'] != '') {
     // If it's their own username, it's okay.
-    $result = mysql_query("SELECT uid FROM users WHERE username = '" . mysql_real_escape_string($values['username']) . "' AND uid != '" . mysql_real_escape_string($values['uid']) . "'");
-    if ($row = mysql_fetch_array($result)) {
+
+    $mysqli = db_connect();
+    $query = "SELECT uid FROM users WHERE username = '"
+      . mysqli_real_escape_string($mysqli,$values['username'])
+      . "' AND uid != '" . mysqli_real_escape_string($mysqli, $values['uid']) . "'";
+    $mysqli->real_query($query);
+    $result = $mysqli->use_result();
+    if ($row = $result->fetch_assoc()) {
       $errors[] = 'Sorry, it looks like that username is already in use.';
     }
   }
@@ -125,10 +139,12 @@ function admin_users_add_edit_form_process($values, $action) {
     
   // If no errors, go ahead and add the user.
   } else {
-  
+
+    $mysqli = db_connect();
+
     $input_names = array('uid', 'username', 'password');
     foreach ($input_names as $input_name) {
-      $clean_values[$input_name] = trim(mysql_real_escape_string($values[$input_name]));
+      $clean_values[$input_name] = trim(mysqli_real_escape_string($mysqli, $values[$input_name]));
     }
     
     // Do an insert if we're adding.
@@ -146,22 +162,29 @@ function admin_users_add_edit_form_process($values, $action) {
           password = '" . $clean_values['password'] . "'
         WHERE uid = '" . $clean_values['uid'] . "'";
     }
-    $result = mysql_query($sql);
+
+    $mysqli->real_query($sql);
+    $result = $mysqli->use_result();
+
     notice($sql);
     
     // $result will return TRUE if it worked. Otherwise, we should show an error to troubleshoot.
+    // TODO If Error
     if ($result) {
       notice(($clean_values['uid'] == '') ? 'The user was added.' : 'The user was updated');
     } else {
       // If something happened, let's show an error.
-      notice(mysql_error());
+      // TODO Get Error from mysqli
+      notice('TODO: get error');
     }
   }
 }
 
 // Delete a user.
 function admin_users_delete_user($uid) {
-  mysql_query("DELETE FROM users WHERE uid = '" . mysql_real_escape_string($uid) . "'");
+  $mysqli = db_connect();
+  $query = "DELETE FROM users WHERE uid = '" . mysqli_real_escape_string($mysqli, $uid) . "'";
+  $mysqli->real_query($query);
   notice('The user with UID ' . $uid . ' was deleted.');
 }
 
