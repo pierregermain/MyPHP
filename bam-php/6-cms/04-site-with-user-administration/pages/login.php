@@ -4,13 +4,13 @@ $title = 'Log in';
 // Process form submissions.
 if (isset($_REQUEST['action'])) {
   switch ($_REQUEST['action']) {
-    
+
     case 'logout':
       session_destroy();
       session_start();
       notice('You have been logged out');
       break;
-    
+
     case 'login':
 
       $mysqli = db_connect();
