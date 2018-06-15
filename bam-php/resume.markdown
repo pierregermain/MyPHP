@@ -299,7 +299,13 @@ INSERT INTO `users` (`uid`, `username`, `password`) VALUES (NULL, 'chris', 'test
 
 Ver `03-site-with-db-and-login`
 
-La configuración a la DB está en el settings.php
+ - La configuración a la DB está en el settings.php
+ - En el index:
+   - Usamos session_start(); para trackear el usuario
+   - Realizamos conexión a DB con db_connect() usando mysqli_connect
+   - Usamos get_notices(); para mostrar el array de $notices al usuario
+
+ 
 
 
 

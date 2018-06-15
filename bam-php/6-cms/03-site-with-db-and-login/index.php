@@ -7,7 +7,7 @@ session_start();
 include('includes/functions.php');
 
 // Connect to the database.
-db_connect();
+$mysqli = db_connect();
 
 // If this is index.php, we won't get a path, so we need to set it.
 $path = isset($_GET['path']) ? $_GET['path'] : 'home.php';
