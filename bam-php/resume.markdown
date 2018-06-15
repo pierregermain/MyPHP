@@ -1,11 +1,19 @@
 # Resumen/Notas PHP
 
-## Hack para ver Errores
+## Hack para ver Errores sin modificar php.ini
 
 ```php
 ini_set('display_startup_errors',1);
 ini_set('display_errors',1);
 error_reporting(-1);
+```
+
+Desde el php.ini sería:
+
+```
+display_startup_errors = On
+display_errors = On
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
 ```
 
 ## Variables

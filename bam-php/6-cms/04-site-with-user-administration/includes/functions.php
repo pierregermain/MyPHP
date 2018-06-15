@@ -66,6 +66,8 @@ function db_connect() {
   if ($mysqli->connect_errno) {
     die( "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
   }
+
+  return $mysqli;
 }
 
 // We're setting up a function to pull together notices to the user and display them.
