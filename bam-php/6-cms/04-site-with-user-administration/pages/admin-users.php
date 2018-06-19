@@ -156,26 +156,23 @@ function admin_users_add_edit_form_process($values, $action) {
     
     // Do an update if we're editing.
     } else {
-      $sql = "
-        UPDATE users
+      $sql = "UPDATE users
         SET username = '" . $clean_values['username'] . "',
           password = '" . $clean_values['password'] . "'
         WHERE uid = '" . $clean_values['uid'] . "'";
     }
 
-    $mysqli->real_query($sql);
-    $result = $mysqli->use_result();
-
     notice($sql);
+
+    $result = $mysqli->real_query($sql);
     
     // $result will return TRUE if it worked. Otherwise, we should show an error to troubleshoot.
-    // TODO If Error
     if ($result) {
       notice(($clean_values['uid'] == '') ? 'The user was added.' : 'The user was updated');
     } else {
       // If something happened, let's show an error.
-      // TODO Get Error from mysqli
-      notice('TODO: get error');
+      notice('Mysql Error:'.mysqli_error($mysqli));
+
     }
   }
 }

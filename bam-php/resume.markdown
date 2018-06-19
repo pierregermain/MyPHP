@@ -324,8 +324,13 @@ Ver `03-site-with-db-and-login`
    - Usamos session_start(); para trackear el usuario
    - Realizamos conexión a DB con db_connect() usando mysqli_connect
    - Usamos get_notices(); para mostrar el array de $notices al usuario
+   
+## Site con User Admin
 
- 
+Ver `04-site-with-user-administration`
+
+- Ahora en el `login.php` añadimos tareas que pueden llevar a cabo usuarios autentificados.
+
 
 
 
