@@ -16,8 +16,8 @@ function admin_users_list() {
       <tr>
         <td>' . $row['uid'] . '</td>
         <td>' . $row['username'] . '</td>
-        <td><a href="admin-users.php?action=delete&uid=' . $row['uid'] . '">Delete</a></td>
-        <td><a href="admin-users.php?action=edit_form&uid=' . $row['uid'] . '">Edit</a></td>
+        <td><a href="' . url('admin/users.php') . '?action=delete&uid=' . $row['uid'] . '">Delete</a></td>
+        <td><a href="' . url('admin/users.php') . '?action=edit_form&uid=' . $row['uid'] . '">Edit</a></td>
       </tr>';
   }
   if ($output != '') {
@@ -71,7 +71,7 @@ function admin_users_add_edit_form($uid = '') {
   
   return '
     <h1>' . $title . '</h1>
-    <form action="admin-users.php" method="post">
+    <form action="' . url('admin/users.php') . '" method="post">
       <p>Username: <input type="text" name="username" value="' . $values['username'] . '" /></p>
       <p>Password: <input type="text" name="password" value="' . $values['password'] . '" /></p>
       <p><input type="submit" value="' . $submit_text . '" /></p>

@@ -331,6 +331,16 @@ Ver `04-site-with-user-administration`
 
 - Ahora en el `login.php` añadimos tareas que pueden llevar a cabo usuarios autentificados.
 
+## Site con Subfolders
+
+Ver `05-site-with-subfolders`
+
+- Añadimos un directorio para /admin
+- Ahora hay links Hay que actualizar ahora los links relativos a absolutos
+- Usamos función `url()` definida en nuestro fichero `functions.php` que prepone el `basepath` definido en nuestro `settings`.
+
+
+
 
 
 
