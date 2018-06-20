@@ -363,5 +363,8 @@ INSERT INTO `products` (`pid`, `title`, `price`, `image`) VALUES (NULL, 'Mahou',
 ```
 
 Dejamos el `products.php` dentro de /admin y realizamos modificaciones en:
- - Añadimos opción de modificar productos en `login.php`
+ - `login.php`: Añadimos opción de modificar productos.
+ - `products.php`: Añadimos la lógiga para obtener los datos de la DB. Muy parecido a `users.php`
+ 
+ 
 
