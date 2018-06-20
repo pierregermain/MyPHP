@@ -371,7 +371,15 @@ Dejamos el `products.php` dentro de /admin y realizamos modificaciones en:
 
 Ver `07-site-with-crud`
  
+Añadimos:
+ - /includes/crud.php
+Modificamos para que usen crud.php:
+ - /admin/products.php
+ - /admin/users.php
  
+
+ 
+
 
  
 
