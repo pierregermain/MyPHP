@@ -35,7 +35,7 @@ function admin_users_list() {
     $output = '<p>There are no users.</p>';
   }
   
-  return '<p><a href="admin-users.php?action=add_form">Add user</a></p>' . $output;
+  return '<p><a href="'.url('admin/users.php').'?action=add_form">Add user</a></p>' . $output;
 }
 
 // Creates a form to add entries into our 'people' table.

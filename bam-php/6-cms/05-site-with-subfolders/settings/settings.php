@@ -10,4 +10,4 @@ $settings['db_password'] = 'root';
 $settings['db_server'] = 'localhost';
 $settings['db_database'] = 'amazing_inc';
 
-$settings['base_path'] = '/05-site-with-subfolders/';
+$settings['base_path'] = '/bam/6-cms/05-site-with-subfolders/';
