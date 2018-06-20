@@ -351,7 +351,7 @@ CREATE TABLE
 ( `pid` INT NOT NULL AUTO_INCREMENT , 
 `title` VARCHAR(128) NOT NULL , 
 `price` FLOAT(4,2) NOT NULL , 
-`img` VARCHAR(256) NOT NULL , 
+`image` VARCHAR(256) NOT NULL , 
 PRIMARY KEY (`pid`)) 
 ENGINE = InnoDB;
 ```
@@ -359,7 +359,7 @@ ENGINE = InnoDB;
 Insertamos un producto de prueba en nuestra DB
 
 ```mysql
-INSERT INTO `products` (`pid`, `title`, `price`, `img`) VALUES (NULL, 'Mahou', '0.75', 'product-1.jpg')
+INSERT INTO `products` (`pid`, `title`, `price`, `image`) VALUES (NULL, 'Mahou', '0.75', 'product-1.jpg')
 ```
 
 Dejamos el `products.php` dentro de /admin y realizamos modificaciones en:
