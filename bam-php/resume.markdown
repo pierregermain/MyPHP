@@ -339,8 +339,28 @@ Ver `05-site-with-subfolders`
 - Ahora hay links Hay que actualizar ahora los links relativos a absolutos
 - Usamos función `url()` definida en nuestro fichero `functions.php` que prepone el `basepath` definido en nuestro `settings`.
 
+## Site con Data Layer en DB para Productos
 
+Ver `06-site-with-products-db`
 
+Creamos una nueva tabla para productos
 
+```mysql
+CREATE TABLE 
+`amazing_inc`.`products` 
+( `pid` INT NOT NULL AUTO_INCREMENT , 
+`title` VARCHAR(128) NOT NULL , 
+`price` FLOAT(4,2) NOT NULL , 
+`img` VARCHAR(256) NOT NULL , 
+PRIMARY KEY (`pid`)) 
+ENGINE = InnoDB;
+```
 
+Insertamos un producto de prueba en nuestra DB
+
+```mysql
+INSERT INTO `products` (`pid`, `title`, `price`, `img`) VALUES (NULL, 'Mahou', '0.75', 'product-1.jpg')
+```
+
+Dejamos el `products.php` dentro de /admin y realizamos modificaciones en:
 
