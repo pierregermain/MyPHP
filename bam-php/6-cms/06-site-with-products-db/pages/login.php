@@ -44,7 +44,8 @@ if (isset($_SESSION['user'])) {
     <h1>Welcome, ' . $_SESSION['user']['username'] . '</h1>
     <p>You are logged in, enjoy!</p>
     <ul>
-      <li><a href="admin-users.php">Administer users</a></li>
+      <li><a href="'. url('admin/users.php') .'">Administer users</a></li>
+      <li><a href="'. url('admin/products.php') .'">Administer products</a></li>
     </ul>';
 } else {
   $content = '

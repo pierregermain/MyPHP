@@ -23,7 +23,7 @@ $year = date('Y');
 // Show log in / log out links.
 $login_logout = '<a href="login.php">Log in</a>';
 if (isset($_SESSION['user'])) {
-  $login_logout = '<a href="login.php">My account</a> | <a href="login.php?action=logout">Log out</a>';
+  $login_logout = '<a href="' . url('login.php') . '">My account</a> | <a href="' . url('login.php') . '?action=logout">Log out</a>';
 }
 
 // Include the file that matches the path name.
