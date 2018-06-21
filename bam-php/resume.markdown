@@ -377,6 +377,8 @@ Modificamos para que usen crud.php:
  - /admin/products.php
  - /admin/users.php
  
+ 
+ 
 
  
 

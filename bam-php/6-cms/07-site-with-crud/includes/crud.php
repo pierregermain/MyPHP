@@ -12,8 +12,13 @@
  */
 function data_list($options) {
   $table_rows = '';
-  $result = mysql_query("SELECT * FROM " . $options['table'] . " ORDER BY " . $options['default_sort_column'] . " ASC");
-  while ($row = mysql_fetch_array($result)) {
+
+  $mysqli = db_connect();
+  $query = "SELECT * FROM " . $options['table'] . " ORDER BY " . $options['default_sort_column'] . " ASC";
+  $mysqli->real_query($query);
+  $result = $mysqli->use_result();
+
+  while ($row = $result->fetch_assoc()) {
     if (!isset($table_header)) {
       $table_header = '';
       foreach ($options['display_columns'] as $col_title) {
@@ -48,8 +53,11 @@ function data_add_edit_form($id, $options) {
     $values = $_POST;
   // If the edit form is being loaded for the first time.
   } elseif ($id != '') {
-    $result = mysql_query("SELECT * FROM " . $options['table'] . " WHERE " . $options['id_column'] . " = '" . mysql_real_escape_string($id) . "'");
-    $values = mysql_fetch_array($result);
+    $mysqli = db_connect();
+    $query = "SELECT * FROM " . $options['table'] . " WHERE " . $options['id_column'] . " = '" . mysqli_real_escape_string($mysqli,$id) . "'";
+    $mysqli->real_query($query);
+    $result = $mysqli->use_result();
+    $values = $result->fetch_array();
   // If this is an add form, set the values to empty.
   } else {
     // Add unique ID to empty values.
@@ -152,7 +160,7 @@ function data_add_edit_form_process($values, $options) {
       $clean_columns[] = $column_name;
     }
     foreach ($clean_columns as $column) {
-      $clean_values[$column] = trim(mysql_real_escape_string($values[$column]));
+      $clean_values[$column] = trim(mysqli_real_escape_string(db_connect(),$values[$column]));
     }
     
     // Remove the unique ID column from values and columns so we can use implode() later.
@@ -179,7 +187,9 @@ function data_add_edit_form_process($values, $options) {
         SET " . $update_query . "
         WHERE " . $options['id_column'] . " = '" . $clean_values[$options['id_column']] . "'";
     }
-    $result = mysql_query($sql);
+
+    $mysqli = db_connect();
+    $result = $mysqli->real_query($sql);
     notice($sql);
     
     // $result will return TRUE if it worked. Otherwise, we should show an error to troubleshoot.
@@ -187,7 +197,7 @@ function data_add_edit_form_process($values, $options) {
       notice(($clean_values[$options['id_column']] == '') ? 'The ' . $options['item_name'] . ' was added.' : 'The ' . $options['item_name'] . ' was updated');
     } else {
       // If something happened, let's show an error.
-      notice(mysql_error());
+      notice('Mysql Error:'.mysqli_error($mysqli));
     }
   }
 }
@@ -196,7 +206,9 @@ function data_add_edit_form_process($values, $options) {
 // Delete an item.
 function data_delete($options, $id) {
 // See $options comments from data_list();
-  mysql_query("DELETE FROM " . $options['table'] . " WHERE " . $options['id_column'] . " = '" . mysql_real_escape_string($id) . "'");
+  $mysqli = db_connect();
+  $query = "DELETE FROM " . $options['table'] . " WHERE " . $options['id_column'] . " = '" . mysqli_real_escape_string($mysqli, $id) . "'";
+  $mysqli->real_query($query);
   notice('The ' . $options['item_name'] . ' with ID ' . $id . ' was deleted.');
 }
 
