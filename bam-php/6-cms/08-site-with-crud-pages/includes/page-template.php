@@ -3,14 +3,15 @@
   
   <head>
     <title><?php print $title; ?> | <?php print $company_name; ?></title>
-    <link type="text/css" rel="stylesheet" media="all" href="<?php print url('styles/style.css') ?>" />
+    <link type="text/css" rel="stylesheet" media="all" href="<?php print url('styles/style.css'); ?>" />
+    <?php print $additional_css_files; ?>
   </head>
 
   <body>
     <div class="body">
       <div class="header">
         <div class="user-menu"><?php print $login_logout; ?></div>
-        <div class="logo"><img src="<?php print url('images/logo.png') ?>" alt="Logo" /></div>
+        <div class="logo"><img src="<?php print url('images/logo.png'); ?>" alt="Logo" /></div>
         <div class="site-title">AmaZING! Inc: Throwing Sticks Done Right</div>
         <div class="header-menu">
           <ul>
@@ -29,7 +30,7 @@
         </div>
         <div class="content">
           <?php print $notices; ?>
-          <?php print $content; ?>
+          <?php if(isset($content)){print $content;} ?>
         </div>
         <div class="clear"></div>
       </div>

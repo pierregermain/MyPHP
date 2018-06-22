@@ -39,6 +39,10 @@ function data_list($options) {
       <td><a href="' . url($options['path']) . '?action=delete&id=' . $row[$options['id_column']] . '">Delete</a></td>';
     $table_rows .= '<tr>' . $table_row . '</tr>';
   }
+
+  if (!isset($table_header)) {
+    $table_header = '';
+  }
   
   $output = '
     <p><a href="' . url($options['path']) . '?action=add_form">Add ' . $options['item_name'] . '</a></p>
@@ -84,11 +88,27 @@ function data_add_edit_form($id, $options) {
   
   $form_inputs = '';
   foreach ($options['add_edit_columns'] as $column_name => $column_options) {
-    $form_inputs  .= '<p>' . $column_options['title']
-      . ': ' . (isset($column_options['prefix']) ? $column_options['prefix'] : '')
-      . '<input type="text" name="' . $column_name . '" value="' . $values[$column_name] . '" /></p>';
+    // Set the default to a text field.
+    if (!isset($column_options['type'])) {
+      $column_options['type'] = 'text';
+    }
+
+    $input_id = 'input_'. $options['table'] . '_' . $column_name;
+
+    // Render the input.
+    switch ($column_options['type']) {
+      case 'text':
+        $input_rendered = '<input type="text" id="' . $input_id . '" name="' . $column_name . '" value="' . $values[$column_name] . '" />';
+        break;
+
+      case 'textarea':
+        $input_rendered = '<textarea id="' . $input_id . '" name="' . $column_name . '">' . htmlentities($values[$column_name]) . '</textarea>';
+        break;
+    }
+
+    $form_inputs  .= '<p>' . $column_options['title'] . ': ' . (isset($column_options['prefix']) ? $column_options['prefix'] : '') . $input_rendered . '</p>';
   }
-  
+
   return '
     <h1>' . $title . '</h1>
     <form action="' . url($options['path']) . '" method="post">
@@ -99,7 +119,6 @@ function data_add_edit_form($id, $options) {
       <input type="hidden" name="id" value="' . $id . '" />
     </form>';
 }
-
 
 // Perform validation on each input.
 // See $options comments from data_list();

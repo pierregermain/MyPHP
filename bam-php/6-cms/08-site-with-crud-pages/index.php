@@ -7,7 +7,7 @@ session_start();
 include('includes/functions.php');
 
 // Connect to the database.
-db_connect();
+$mysqli = db_connect();
 
 // If this is index.php, we won't get a path, so we need to set it.
 $path = isset($_GET['path']) ? $_GET['path'] : 'home.php';
@@ -27,8 +27,33 @@ if (isset($_SESSION['user'])) {
 }
 
 // Include the file that matches the path name.
-include('pages/' . $path);
+$page_path = 'pages/' . $path;
+if (file_exists($page_path)) {
+  include($page_path);
+} else {
+  $result = mysqli_query($mysqli,"SELECT * FROM pages WHERE path = '" . mysqli_real_escape_string($mysqli, $path) . "'");
+  if ($row = mysqli_fetch_array($result)) {
+    $title = $row['title'];
+    
+    // To get the content into a variable that allows PHP, we have to do an eval().
+    ob_start();
+    eval('?> ' . $row['content'] . ' <?php ');
+    $content = ob_get_contents();
+    ob_end_clean();
+  }
+}
 
 $notices = get_notices();
+
+// Get admin.css if it's an admin page.
+$additional_css_files = '';
+if (isset($_GET['path'])) {
+  $explode_path = explode('/', $_GET['path']);
+  $arrayshift_path = array_shift($explode_path);
+
+  if ($arrayshift_path == 'admin') {
+    $additional_css_files .= '<link type="text/css" rel="stylesheet" media="all" href="' . url('styles/admin.css') . '" />';
+  }
+}
 
 include('includes/page-template.php');

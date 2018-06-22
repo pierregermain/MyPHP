@@ -46,6 +46,7 @@ if (isset($_SESSION['user'])) {
     <ul>
       <li><a href="'. url('admin/users.php') .'">Administer users</a></li>
       <li><a href="'. url('admin/products.php') .'">Administer products</a></li>
+      <li><a href="'. url('admin/pages.php') .'">Administer pages</a></li>
     </ul>';
 } else {
   $content = '

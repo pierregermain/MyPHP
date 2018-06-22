@@ -408,14 +408,17 @@ Creamos una nueva tabla para las páginas
 ```sql
 CREATE TABLE `amazing_inc`.`pages` 
 ( `page_id` INT NOT NULL AUTO_INCREMENT , 
-`page_title` VARCHAR(256) NOT NULL , 
+`title` VARCHAR(256) NOT NULL , 
 `content` LONGTEXT NOT NULL , 
 `path` VARCHAR(256) NOT NULL , 
 PRIMARY KEY (`page_id`)) ENGINE = InnoDB;
 ```
 
+Hacemos lo siguiente:
 
-
+ - creamos admin/pages.php
+ - añadir link de editar paginas en login.php
+ - añadir lógica en el index.php
 
 
 
