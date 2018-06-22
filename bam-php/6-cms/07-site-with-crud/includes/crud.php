@@ -19,17 +19,21 @@ function data_list($options) {
   $result = $mysqli->use_result();
 
   while ($row = $result->fetch_assoc()) {
+    // Table Header (first Row)
     if (!isset($table_header)) {
       $table_header = '';
       foreach ($options['display_columns'] as $col_title) {
         $table_header .= '<th>' . $col_title . '</th>';
       }
+      // Edit and Delete option
       $table_header = '<tr>' . $table_header . '<th>Edit</th><th>Delete</th></tr>';
     }
+    // Table Rows (second Row and later)
     $table_row = '';
     foreach($options['display_columns'] as $col_name => $col_title) {
       $table_row .= '<td>' . $row[$col_name] . '</td>';
     }
+    // Edit and Delete option
     $table_row .= '
       <td><a href="' . url($options['path']) . '?action=edit_form&id=' . $row[$options['id_column']] . '">Edit</a></td>
       <td><a href="' . url($options['path']) . '?action=delete&id=' . $row[$options['id_column']] . '">Delete</a></td>';
@@ -49,6 +53,7 @@ function data_list($options) {
 function data_add_edit_form($id, $options) {
 
   $form_id = 'admin_add_edit_' . $options['table'];
+  // Form Id Check
   if (isset($_POST['form_id']) && $_POST['form_id'] == $form_id) {
     $values = $_POST;
   // If the edit form is being loaded for the first time.
@@ -79,7 +84,9 @@ function data_add_edit_form($id, $options) {
   
   $form_inputs = '';
   foreach ($options['add_edit_columns'] as $column_name => $column_options) {
-    $form_inputs  .= '<p>' . $column_options['title'] . ': ' . (isset($column_options['prefix']) ? $column_options['prefix'] : '') . '<input type="text" name="' . $column_name . '" value="' . $values[$column_name] . '" /></p>';
+    $form_inputs  .= '<p>' . $column_options['title']
+      . ': ' . (isset($column_options['prefix']) ? $column_options['prefix'] : '')
+      . '<input type="text" name="' . $column_name . '" value="' . $values[$column_name] . '" /></p>';
   }
   
   return '
@@ -143,6 +150,7 @@ function data_add_edit_form_validate($options, $values) {
 function data_add_edit_form_process($values, $options) {
   
   // Since we're using 'id' for the unique id input, set the actual unique id column value.
+  // 'id' will be 'pid' or 'uid'
   $values[$options['id_column']] = $values['id'];
   
   $errors = data_add_edit_form_validate($options, $values);

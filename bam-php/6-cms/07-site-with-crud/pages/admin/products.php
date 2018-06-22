@@ -8,7 +8,7 @@ $options = array(
   'table' => 'products',
   'item_name' => 'product',
   'display_columns' => array(
-    'pid' => 'PID',
+    'pid' => 'Product ID',
     'title' => 'Title',
     'price' => 'Price',
   ),

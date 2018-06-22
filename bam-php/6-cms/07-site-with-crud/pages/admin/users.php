@@ -8,7 +8,7 @@ $options = array(
   'table' => 'users',
   'item_name' => 'user',
   'display_columns' => array(
-    'uid' => 'UID',
+    'uid' => 'User ID',
     'username' => 'Username',
   ),
   'id_column' => 'uid',

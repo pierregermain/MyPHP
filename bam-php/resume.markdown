@@ -2,7 +2,7 @@
 
 ## Hack para ver Errores sin modificar php.ini
 
-```php
+```
 ini_set('display_startup_errors',1);
 ini_set('display_errors',1);
 error_reporting(-1);
@@ -18,6 +18,18 @@ error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
 
 ## Mysqli Snippet
 
+#### Conexión
+
+```
+  $mysqli = mysqli_connect('server', 'user', 'pass', 'db');
+
+  if ($mysqli->connect_errno) {
+    die( "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+  }
+```
+
+#### Query
+
 ```
 $mysqli = db_connect();
 $query = "";
@@ -26,6 +38,10 @@ $result = $mysqli->use_result();
 while ($row = $result->fetch_assoc()) {
   $row;
 }
+
+// Para Errores
+mysqli_error($mysqli);
+
 ```
 
 ## Variables
@@ -367,7 +383,7 @@ Dejamos el `products.php` dentro de /admin y realizamos modificaciones en:
  - `/admin/products.php`: Añadimos la lógica para obtener los datos de la DB. Muy parecido a `/admin/users.php`
  - Añadimos obtener productos desde `includes/functions.php`
  
-## Site con funcionalidad CRUD
+## Site con funcionalidad CRUD para usuarios y productos
 
 Ver `07-site-with-crud`
  
@@ -376,6 +392,23 @@ Añadimos:
 Modificamos para que usen crud.php:
  - /admin/products.php
  - /admin/users.php
+ Dichos ficheros ahora pasan un array a crud.php para obtener los datos.
+ 
+**TAREA**
+
+Hacer tu mismo un crud.php basado en products.php para aprender a hacer este tipo de programas!!!
+
+## Site con funcionalidad para editar páginas
+
+
+
+
+
+
+
+
+
+
  
  
  
