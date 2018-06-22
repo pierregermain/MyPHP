@@ -375,7 +375,8 @@ ENGINE = InnoDB;
 Insertamos un producto de prueba en nuestra DB
 
 ```mysql
-INSERT INTO `products` (`pid`, `title`, `price`, `image`) VALUES (NULL, 'Mahou', '0.75', 'product-1.jpg')
+INSERT INTO `products` (`pid`, `title`, `price`, `image`) 
+VALUES (NULL, 'Mahou', '0.75', 'product-1.jpg')
 ```
 
 Dejamos el `products.php` dentro de /admin y realizamos modificaciones en:
@@ -394,11 +395,25 @@ Modificamos para que usen crud.php:
  - /admin/users.php
  Dichos ficheros ahora pasan un array a crud.php para obtener los datos.
  
-**TAREA**
+**Ejercicio / Tarea**
 
 Hacer tu mismo un crud.php basado en products.php para aprender a hacer este tipo de programas!!!
 
 ## Site con funcionalidad para editar páginas
+
+Ver `08-site-with-crud-pages`
+
+Creamos una nueva tabla para las páginas
+
+```sql
+CREATE TABLE `amazing_inc`.`pages` 
+( `page_id` INT NOT NULL AUTO_INCREMENT , 
+`page_title` VARCHAR(256) NOT NULL , 
+`content` LONGTEXT NOT NULL , 
+`path` VARCHAR(256) NOT NULL , 
+PRIMARY KEY (`page_id`)) ENGINE = InnoDB;
+```
+
 
 
 
