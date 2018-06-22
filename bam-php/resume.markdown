@@ -420,7 +420,29 @@ Hacemos lo siguiente:
  - añadir link de editar paginas en login.php
  - añadir lógica en el index.php
 
+# Que deberíamos añadir
 
+ - sistema de permisos
+ - tipos de fields
+ - sistema de settings
+ - sistema de vistas
+ - user link debe mostar logout al hacer login
+ - contact form debería ser real
+ - sistema de menus
+ 
+# PHP OOP
+
+Ver `09-site-with-a-class`
+
+- modificamos crud.php
+- modificamos paginas para usar crud.php
+
+Teoria:
+ - Clases tienen Propiedades (vars's) y métodos (function's)
+ - Usamos `$this->nombre_variable` para acceder a Propiedades.
+ - Usamos `$his->metodo()` para acceder a métodos.
+
+TODO: ADAPTAR a PHP 7: Necesitamos un constructor
 
 
 
