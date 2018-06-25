@@ -442,9 +442,6 @@ Teoria:
  - Usamos `$this->nombre_variable` para acceder a Propiedades.
  - Usamos `$his->metodo()` para acceder a métodos.
 
-TODO: ADAPTAR a PHP 7: Necesitamos un constructor
-
-
 
 
 

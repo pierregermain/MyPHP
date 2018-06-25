@@ -24,8 +24,13 @@ class Crud {
   
   function view() {
     $table_rows = '';
-    $result = mysql_query("SELECT * FROM " . $this->table . " ORDER BY " . $this->default_sort_column . " ASC");
-    while ($row = mysql_fetch_array($result)) {
+
+    $mysqli = db_connect();
+    $query = "SELECT * FROM " . $this->table . " ORDER BY " .  $this->default_sort_column . " ASC";
+    $mysqli->real_query($query);
+    $result = $mysqli->use_result();
+
+    while ($row = $result->fetch_assoc()) {
       if (!isset($table_header)) {
         $table_header = '';
         foreach ($this->display_columns as $col_title) {
@@ -56,8 +61,13 @@ class Crud {
       $values = $_POST;
     // If the edit form is being loaded for the first time.
     } elseif ($id != '') {
-      $result = mysql_query("SELECT * FROM " . $this->table . " WHERE " . $this->id_column . " = '" . mysql_real_escape_string($id) . "'");
-      $values = mysql_fetch_array($result);
+
+      $mysqli = db_connect();
+      $query = "SELECT * FROM " . $this->table . " WHERE " .  $this->id_column  . " = '" . mysqli_real_escape_string($mysqli,$id) . "'";
+      $mysqli->real_query($query);
+      $result = $mysqli->use_result();
+      $values = $result->fetch_array();
+
     // If this is an add form, set the values to empty.
     } else {
       // Add unique ID to empty values.
@@ -173,7 +183,7 @@ class Crud {
         $clean_columns[] = $column_name;
       }
       foreach ($clean_columns as $column) {
-        $clean_values[$column] = trim(mysql_real_escape_string($values[$column]));
+        $clean_values[$column] = trim(mysqli_real_escape_string(db_connect(),$values[$column]));
       }
       
       // Remove the unique ID column from values and columns so we can use implode() later.
@@ -201,7 +211,9 @@ class Crud {
           SET " . $update_query . "
           WHERE " . $this->id_column . " = '" . $clean_values[$this->id_column] . "'";
       }
-      $result = mysql_query($sql);
+
+      $mysqli = db_connect();
+      $result = $mysqli->real_query($sql);
       notice($sql);
       
       // $result will return TRUE if it worked. Otherwise, we should show an error to troubleshoot.
@@ -209,13 +221,15 @@ class Crud {
         notice(($clean_values[$this->id_column] == '') ? 'The ' . $this->item_name . ' was added.' : 'The ' . $this->item_name . ' was updated');
       } else {
         // If something happened, let's show an error.
-        notice(mysql_error());
+        notice('Mysql Error:'.mysqli_error($mysqli));
       }
     }
   }
   
   function delete($id) {
-    mysql_query("DELETE FROM " . $this->table . " WHERE " . $this->id_column . " = '" . mysql_real_escape_string($id) . "'");
+    $mysqli = db_connect();
+    $query = "DELETE FROM " . $this->table . " WHERE " . $this->id_column. " = '" . mysqli_real_escape_string($mysqli, $id) . "'";
+    $mysqli->real_query($query);
     notice('The ' . $this->item_name . ' with ID ' . $id . ' was deleted.');
   }
   
