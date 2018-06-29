@@ -460,7 +460,7 @@ Ver `09-site-with-a-class`
 Teoria:
  - Clases tienen Propiedades (vars's) y métodos (function's)
  - Usamos `$this->nombre_variable` para acceder a Propiedades.
- - Usamos `$his->metodo()` para acceder a métodos.
+ - Usamos `$this->metodo()` para acceder a métodos.
 
 
 
